@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EndToEnd.Trainee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@if (User.IsInRole("Training staff"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Date of Birth", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TraineeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TraineeDOB)
+            </td>
+
+            <td>
+                @if (User.IsInRole("Training staff"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TraineeID })
+                }
+                |
+                @Html.ActionLink("Details", "Details", new { id = item.TraineeID })
+                |
+                @if (User.IsInRole("Training staff"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TraineeID })
+                }
+            </td>
+        </tr>
+    }
+
+</table>

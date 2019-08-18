@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="61cc40f1383845ba9e6b6747ac29dcee" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.CC" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Enrollment" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Topic" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Trainee" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Trainer" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Course__CCID__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Topic__CourseID__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Enrollmen__Topic__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Enrollmen__Train__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Topic__TrainerID__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

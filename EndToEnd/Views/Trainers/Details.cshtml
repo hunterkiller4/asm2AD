@@ -1,0 +1,87 @@
+﻿@model EndToEnd.Trainer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trainer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerEducation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerEducation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerEmail)
+        </dd>
+
+        <dt>
+            Assign
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>
+                        Topic Name
+                    </th>
+                    <th>
+                        Topic Description
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model.Topics)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicDescription)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+    
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TrainerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

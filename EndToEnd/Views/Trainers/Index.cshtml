@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EndToEnd.Trainer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (User.IsInRole("Training staff"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainerType)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerType)
+            </td>
+            <td>
+            <td>
+                @if (User.IsInRole("Training staff"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TrainerID })
+                }
+                |
+                @Html.ActionLink("Details", "Details", new { id = item.TrainerID })
+                |
+                @if (User.IsInRole("Training staff"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TrainerID })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

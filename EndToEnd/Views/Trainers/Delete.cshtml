@@ -1,0 +1,64 @@
+﻿@model EndToEnd.Trainer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Trainer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerEducation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerEducation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerEmail)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
