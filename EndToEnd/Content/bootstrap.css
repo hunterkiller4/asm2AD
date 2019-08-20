@@ -1085,8 +1085,8 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #FF69B4;
-    background-color: #FF69B4;
+    color: #ffffff;
+    background-color: #ffffff;
 }
 input,
 button,
@@ -1097,12 +1097,12 @@ textarea {
   line-height: inherit;
 }
 a {
-    color: #FF69B4;
+    color: #ffffff;
     text-decoration: none;
 }
     a:hover,
     a:focus {
-        color: #FF69B4;
+        color: #ffffff;
         text-decoration: underline;
     }
 a:focus {
@@ -2400,9 +2400,9 @@ th {
 .table > tbody + tbody {
   border-top: 2px solid #ddd;
 }
-.table .table {
-  background-color: hotpink;
-}
+    .table .table {
+        background-color: #ffffff;
+    }
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
