@@ -36,7 +36,8 @@ namespace EndToEnd.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 trainees = trainees.Where(s => s.TraineeName.Contains(searchString) || s.TraineeTOEIC.ToString().Contains(searchString)
-                                       || s.TraineeEducation.Contains(searchString) || s.TraineeAge.ToString().Contains(searchString));
+                                       || s.TraineeEducation.Contains(searchString) || s.TraineeAge.ToString().Contains(searchString)
+                                       || s.TraineeDOB.ToString().Contains(searchString));
             }
             switch (sortOrder)
             {

@@ -22,9 +22,12 @@ namespace EndToEnd
         }
     
         public int TraineeID { get; set; }
-        [Display(Name = "Name")]
+        [Display(Name = "Trainee Name")]
         [StringLength(20, ErrorMessage = "The name must be under 20 characters.")]
         public string TraineeName { get; set; }
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime TraineeDOB { get; set; }
         [Display(Name = "Age")]
         public int TraineeAge { get; set; }
@@ -32,6 +35,7 @@ namespace EndToEnd
         [StringLength(20, ErrorMessage = "The education must be under 20 characters.")]
         public string TraineeEducation { get; set; }
         [Display(Name = "TOEIC Score")]
+        [StringLength(3, ErrorMessage = "The score must be under 1000.")]
         public int TraineeTOEIC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

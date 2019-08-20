@@ -22,10 +22,10 @@ namespace EndToEnd
         }
     
         public int CCID { get; set; }
-        [Display(Name = "Name")]
+        [Display(Name = "Category Name")]
         [StringLength(20, ErrorMessage = "The name must be under 20 characters.")]
         public string CCName { get; set; }
-        [Display(Name = "Description")]
+        [Display(Name = "Category Description")]
         [StringLength(20, ErrorMessage = "The description must be under 20 characters.")]
         public string CCDescription { get; set; }
     

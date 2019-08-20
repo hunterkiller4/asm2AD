@@ -11,15 +11,21 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    using (Html.BeginForm())
+    {
+        <p>
+            Find: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
 }
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TrainerName)
-        </th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         <th>
-            @Html.DisplayNameFor(model => model.TrainerType)
+            @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TypeSortParm })
         </th>
         <th></th>
     </tr>
@@ -35,10 +41,7 @@
             </td>
             <td>
             <td>
-                @if (User.IsInRole("Training staff"))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.TrainerID })
-                }
+                @Html.ActionLink("Edit", "Edit", new { id = item.TrainerID })
                 |
                 @Html.ActionLink("Details", "Details", new { id = item.TrainerID })
                 |
@@ -46,7 +49,6 @@
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.TrainerID })
                 }
-
             </td>
         </tr>
     }

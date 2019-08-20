@@ -15,9 +15,34 @@ namespace EndToEnd.Controllers
         private Entities db = new Entities();
 
         // GET: Trainers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.Trainers.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.TypeSortParm = sortOrder == "Type" ? "type_desc" : "Type";
+            var trainers = from s in db.Trainers
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                trainers = trainers.Where(s => s.TrainerName.Contains(searchString) || s.TrainerEducation.Contains(searchString)
+                                       || s.TrainerType.Contains(searchString) || s.TrainerPhone.ToString().Contains(searchString)
+                                       || s.TrainerEmail.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    trainers = trainers.OrderByDescending(s => s.TrainerName);
+                    break;
+                case "Type":
+                    trainers = trainers.OrderBy(s => s.TrainerType);
+                    break;
+                case "type_desc":
+                    trainers = trainers.OrderByDescending(s => s.TrainerType);
+                    break;
+                default:
+                    trainers = trainers.OrderBy(s => s.TrainerName);
+                    break;
+            }
+            return View(trainers.ToList());
         }
 
         // GET: Trainers/Details/5

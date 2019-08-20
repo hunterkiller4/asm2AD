@@ -15,9 +15,33 @@ namespace EndToEnd.Controllers
         private Entities db = new Entities();
 
         // GET: CCs
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.CCs.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DescSortParm = sortOrder == "Desc" ? "desc_desc" : "Desc";
+            var ccs = from s in db.CCs
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ccs = ccs.Where(s => s.CCName.Contains(searchString)
+                                       || s.CCDescription.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    ccs = ccs.OrderByDescending(s => s.CCName);
+                    break;
+                case "Desc":
+                    ccs = ccs.OrderBy(s => s.CCDescription);
+                    break;
+                case "desc_desc":
+                    ccs = ccs.OrderByDescending(s => s.CCDescription);
+                    break;
+                default:
+                    ccs = ccs.OrderBy(s => s.CCName);
+                    break;
+            }
+            return View(ccs.ToList());
         }
 
         // GET: CCs/Details/5

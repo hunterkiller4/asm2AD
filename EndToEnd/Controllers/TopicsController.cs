@@ -15,9 +15,32 @@ namespace EndToEnd.Controllers
         private Entities db = new Entities();
 
         // GET: Topics
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var topics = db.Topics.Include(t => t.Course).Include(t => t.Trainer);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DescSortParm = sortOrder == "Desc" ? "desc_desc" : "Desc";
+            var topics = from s in db.Topics
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                topics = topics.Where(s => s.TopicName.Contains(searchString)
+                                       || s.TopicDescription.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    topics = topics.OrderByDescending(s => s.TopicName);
+                    break;
+                case "Desc":
+                    topics = topics.OrderBy(s => s.TopicDescription);
+                    break;
+                case "desc_desc":
+                    topics = topics.OrderByDescending(s => s.TopicDescription);
+                    break;
+                default:
+                    topics = topics.OrderBy(s => s.TopicName);
+                    break;
+            }
             return View(topics.ToList());
         }
 

@@ -9,37 +9,39 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CourseName)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CourseDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CC.CCName)
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescSortParm })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CC.CCName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CourseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CourseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CourseID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+            </td>
+        </tr>
+    }
 
 </table>

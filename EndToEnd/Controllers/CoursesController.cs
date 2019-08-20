@@ -15,9 +15,32 @@ namespace EndToEnd.Controllers
         private Entities db = new Entities();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var courses = db.Courses.Include(c => c.CC);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DescSortParm = sortOrder == "Desc" ? "desc_desc" : "Desc";
+            var courses = from s in db.Courses
+                      select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(s => s.CourseName.Contains(searchString)
+                                       || s.CourseDescription.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    courses = courses.OrderByDescending(s => s.CourseName);
+                    break;
+                case "Desc":
+                    courses = courses.OrderBy(s => s.CourseDescription);
+                    break;
+                case "desc_desc":
+                    courses = courses.OrderByDescending(s => s.CourseDescription);
+                    break;
+                default:
+                    courses = courses.OrderBy(s => s.CourseName);
+                    break;
+            }
             return View(courses.ToList());
         }
 

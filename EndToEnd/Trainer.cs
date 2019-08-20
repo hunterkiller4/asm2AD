@@ -22,17 +22,17 @@ namespace EndToEnd
         }
     
         public int TrainerID { get; set; }
-        [Display(Name = "Name")]
+        [Display(Name = "Trainer Name")]
         [StringLength(20, ErrorMessage = "The name must be under 20 characters.")]
         public string TrainerName { get; set; }
         [Display(Name = "Type")]
-        [StringLength(8, ErrorMessage = "The type must be under 8 characters.")]
+        [StringLength(7, ErrorMessage = "The type must be under 8 characters.")]
         public string TrainerType { get; set; }
         [Display(Name = "Education")]
         [StringLength(20, ErrorMessage = "The education must be under 20 characters.")]
         public string TrainerEducation { get; set; }
         [Display(Name = "Phone")]
-        [StringLength(10, ErrorMessage = "The phone must be under 10 digits.")]
+        [Range(100000000, 999999999, ErrorMessage = "Value must be between 100000000 and 999999999.")]
         public int TrainerPhone { get; set; }
         [Display(Name = "Email")]
         [StringLength(20, ErrorMessage = "The email must be under 20 characters.")]
